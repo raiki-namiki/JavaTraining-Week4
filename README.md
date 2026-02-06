@@ -1,20 +1,22 @@
-プロジェクト概要:
-Spring Bootを使って作成した、タスク（ToDo）を管理するアプリケーションです。データベースにはH2 Databaseを使用しています。
+目的と機能概要（1〜2段落）：
+Spring BootとThymeleafを使用した、タスク管理アプリケーションです。タスクの登録・表示・編集・削除機能が備わっており、例外エラーにも対応しています。
 
-環境構築手順（DB設定を含む）:
-Javaのバージョン:Java 17
-データベース:H2 Database
-設定ファイル；`src/main/resources/application.yml` に記載
+起動手順（JDK/ビルドツール、bootRunなど）：
+Java 17, Thymeleaf, Gradle
+実行：./gradlew bootRun
 
-実行・確認手順（curl例など）:
-./gradlew bootRun → Cntr C で動作終了
+画面遷移（URL一覧：/tasks, /tasks/new, /tasks/{id}/edit など）：
+/tasks	            GET	    タスク一覧表示（編集・削除ボタンあり）
+/tasks/new	        GET	    新規タスク作成フォームの表示
+/tasks	            POST	新規タスクの登録処理
+/tasks/{id}/edit	GET	    既存タスクの編集フォーム表示
+/tasks/{id}	        POST	タスクの更新処理
+/tasks/{id}/delete	POST	タスクの削除処理
 
-・タスクの登録；curl -X POST -H "Content-Type: application/json" -d "{\"title\":\"テストタスク\",\"completed\":false}" http://localhost:8080/tasks
+バリデーション・例外ハンドリングの説明
+・バリデーション
+@NotBlank：タイトルの入力を必須にする
+@Size (Max = 50)：入力される文字数を50字以内にする
 
-例外ハンドリングの動作例（400/404の例）:
-・タイトルを空にして送信：
-curl -v -X POST -H "Content-Type: application/json" -d "{\"title\":\"\"}" http://localhost:8080/tasks
-・データがなしにして送信：
-curl -v http://localhost:8080/tasks/999
-
-苦労した点：H2コンソールが出ない問題が起こり、様々な方法を試みましたが、中々直らず苦戦しました。結果として、application.yml と build.gradle を調整し、ブラウザからデータベースを操作できるように設定したことで表示することができました。
+・例外ハンドリング
+存在しないタスクIDを指定して画面にアクセスした場合、エラーページを表示する（ResponseStatusExceptionからerror/404.htmlを表示）
