@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新規タスク作成</title>
+    <style>
+        .error-message { color: red; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>新規タスク作成</h1>
+
+    <form th:action="@{/tasks}" th:object="${taskForm}" method="post">
+        
+        <label>タイトル：</label>
+        <input type="text" th:field="*{title}">
+        
+        <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error-message"></div>
+        
+        <br><br>
+        <button type="submit">登録</button>
+    </form>
+    
+    <a href="/tasks">一覧に戻る</a>
+</body>
+</html>

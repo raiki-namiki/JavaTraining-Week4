@@ -1,13 +1,13 @@
-package com.example.hellospring;
+package com.example.taskapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HellospringApplication {
+public class JavaTrainingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HellospringApplication.class, args);
+		SpringApplication.run(JavaTrainingApplication.class, args);
 	}
 
 }

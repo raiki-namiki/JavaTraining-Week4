@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>タスク管理アプリ</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .success-msg { color: blue; font-weight: bold; margin-bottom: 10px; }
+        .error-msg { color: red; }
+        nav { margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+        nav a { margin-right: 15px; text-decoration: none; color: #333; }
+        nav a:hover { color: #007bff; }
+    </style>
+</head>
+<body>
+
+    <nav th:fragment="header">
+        <strong>Task App</strong>
+        <a th:href="@{/tasks}">タスク一覧</a>
+        <a th:href="@{/tasks/new}">新規作成</a>
+    </nav>
+
+    <div th:fragment="flash_message">
+        <div th:if="${success}" class="success-msg">
+            <span th:text="${success}"></span>
+        </div>
+    </div>
+
+</body>
+</html>

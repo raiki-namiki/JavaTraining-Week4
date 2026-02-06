@@ -1,20 +1,20 @@
-	•	プロジェクト概要（1〜2行）:
-	Spring Boot を利用したWebアプリケーション。基本的な「Hello World」の表示と、タスクデータの保存・取得ができる機能を作成。
+プロジェクト概要:
+Spring Bootを使って作成した、タスク（ToDo）を管理するアプリケーションです。データベースにはH2 Databaseを使用しています。
 
-	•	開発環境（JDK / IDE / ビルドツールのバージョン）：
-	Java: JDK 17
-	IDE:VS Cord
-	Build Tool: Spring Boot 4.0.1 , Gradle
-	•	セットアップ手順
-	1.パソコン環境の問題により、リポジトリをSpring Intializrからダウンロードし、解凍することで作成。
-	2.プロジェクトのルートディレクトリに移動。
-	3.コマンドでアプリケーションを起動。
+環境構築手順（DB設定を含む）:
+Javaのバージョン:Java 17
+データベース:H2 Database
+設定ファイル；`src/main/resources/application.yml` に記載
 
-	•	Gradle: gradlew.bat bootRun
-	
-	•	動作確認手順（/hello と /api/tasks の例）：/
-	・hello：gradlew.bat bootRun → curl http://localhost:8080/hello
-	・/api/tasks：gradlew.bat bootRun → curl http://localhost:8080/api/tasks (確認) → $ curl -X POST -H "Content-Type: application/json" -d "{\"title\":\"new task\"}" http://localhost:8080/api/tasks
+実行・確認手順（curl例など）:
+./gradlew bootRun → Cntr C で動作終了
 
-	•	エラーが出た場合の対処（自分が踏んだ内容を1〜3行で記載）：
-	まずはエラー文を読み、エラー内容を確認したうえで該当の場所を探した。解決方法が分からない場合は調べたりAIを利用したりして、エラー原因と解決方法の理解に努めた。
+・タスクの登録；curl -X POST -H "Content-Type: application/json" -d "{\"title\":\"テストタスク\",\"completed\":false}" http://localhost:8080/tasks
+
+例外ハンドリングの動作例（400/404の例）:
+・タイトルを空にして送信：
+curl -v -X POST -H "Content-Type: application/json" -d "{\"title\":\"\"}" http://localhost:8080/tasks
+・データがなしにして送信：
+curl -v http://localhost:8080/tasks/999
+
+苦労した点：H2コンソールが出ない問題が起こり、様々な方法を試みましたが、中々直らず苦戦しました。結果として、application.yml と build.gradle を調整し、ブラウザからデータベースを操作できるように設定したことで表示することができました。

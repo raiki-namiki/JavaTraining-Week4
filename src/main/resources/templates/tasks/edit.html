@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>タスク編集</title>
+</head>
+<body>
+    <h1>タスク編集</h1>
+
+    <form th:action="@{/tasks/{id}(id=${taskId})}" th:object="${taskForm}" method="post">
+        
+        <div>
+            <label for="title">タイトル</label>
+            <input type="text" id="title" th:field="*{title}">
+            <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red;"></div>
+        </div>
+
+        <button type="submit">更新する</button>
+    </form>
+
+    <a th:href="@{/tasks}">一覧に戻る</a>
+</body>
+</html>
