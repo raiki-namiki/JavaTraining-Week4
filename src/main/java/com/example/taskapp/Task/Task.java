@@ -1,4 +1,4 @@
-package com.example.hellospring.Task;
+package com.example.taskapp.Task;
 
 public class Task {
     private Integer id;

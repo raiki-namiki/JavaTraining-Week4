@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>タスク一覧 - TaskApp</title>
+</head>
+<body>
+    <h2> ログイン成功 </h2>
+    <p>タスク一覧画面</p>
+    <p>タスク</p>
+
+    <br>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">ログアウトする</button>
+    </form>
+</body>
+</html>

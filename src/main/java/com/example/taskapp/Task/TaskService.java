@@ -1,4 +1,4 @@
-package com.example.hellospring.Task;
+package com.example.taskapp.Task;
 
 import java.util.ArrayList;
 import java.util.List;

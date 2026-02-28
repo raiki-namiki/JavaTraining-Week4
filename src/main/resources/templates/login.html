@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ログイン - TaskApp</title>
+</head>
+<body>
+    <h2>タスク管理アプリ - ログイン</h2>
+
+    <div th:if="${param.error}" style="color: red;">
+        ユーザー名かパスワードが間違っています。
+    </div>
+
+    <div th:if="${param.logout}" style="color: blue;">
+        ログアウトしました。
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label for="username">ユーザー名:</label>
+            <input type="text" id="username" name="username" required autofocus />
+        </div>
+        <br>
+        <div>
+            <label for="password">パスワード:</label>
+            <input type="password" id="password" name="password" required />
+        </div>
+        <br>
+        <button type="submit">ログイン</button>
+    </form>
+</body>
+</html>
